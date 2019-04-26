@@ -11,13 +11,6 @@ package com.appl.atm.model;
  */
 public class Account {
 
-    /**
-     * @param totalBalance the totalBalance to set
-     */
-    public void setTotalBalance(double totalBalance) {
-        this.totalBalance = totalBalance;
-    }
-
     private int accountNumber; // account number
     private int pin; // PIN for authentication
     private double availableBalance; // funds available for withdrawal
@@ -63,17 +56,16 @@ public class Account {
     /* INI ANEH, TRF kok NAMBAH? */
     public void transfer(double amount) {
         this.availableBalance += amount;
-        this.setTotalBalance(this.totalBalance + amount);
+        this.totalBalance += amount;
     }
 
     public void credit(double amount) {
-        this.availableBalance += amount;
-        this.setTotalBalance(this.totalBalance + amount);
+        this.availableBalance -= amount;
+        this.totalBalance -= amount;
     }
 
     public void debit(double amount) {
-        this.setTotalBalance(this.totalBalance - amount);
-        this.availableBalance -= amount;
+        this.totalBalance += amount;
     }
 
     public int getAccountNumber() {
@@ -100,32 +92,6 @@ public class Account {
         return this.getClass().toString().substring(25);
     }
 
-    public void displayMainMenu() {
-    }
-
-    public void payTax() {
-    }
-
-    public boolean isAvailableForWithdraw(double amount) {
-        return true;
-    }
-
-    public boolean isAvailableForTransfer(double amount) {
-        return true;
-    }
-
-    public int getUnblockCost() {
-        return Account.UNBLOCK_COST;
-    }
-
-    public int getMAXWITHDRAW() {
-        return MAXWITHDRAW;
-    }
-
-    public int getMAXTRANSFER() {
-        return MAXTRANSFER;
-    }
-    
     public int getTransferToday() {
         return transferToday;
     }
@@ -141,9 +107,35 @@ public class Account {
     public void setWithdrawToday(double WithdrawToday) {
         this.WithdrawToday += WithdrawToday;
     }
-    
-    public void setUNBLOCK_COST(int UNBLOCK_COST) {
-        this.UNBLOCK_COST = UNBLOCK_COST;
+
+    public void displayMainMenu(){
     }
-    
+
+    public void payTax() {
+    }
+
+    public boolean isAvailableForWithdraw(double amount) {
+        return true;
+    }
+
+    public boolean isAvailableForTransfer(double amount) {
+        return true;
+    }
+
+    public int getUnblockCost() {
+        return Account.UNBLOCK_COST;
+
+    }
+
+    public int getMaxWithdraw() {
+        return MAXWITHDRAW;
+    }
+
+    public int getMaxTransfer() {
+        return MAXTRANSFER;
+    }
+
+    public int getMonthlyAdm() {
+        return MONTHLY_ADM;
+    }
 }

@@ -15,15 +15,7 @@ import com.appl.atm.view.*;
  */
 public class AccountController{
     
-    private Keypad keypad; // reference to keypad
-    private Screen screen;
-    private BankDatabase bankDatabase;
-    
-    public AccountController(BankDatabase theBankDatabase, Keypad theKeypad, Screen theScreen){
-        bankDatabase = theBankDatabase;
-	keypad = theKeypad;
-	screen = theScreen;
-    }
+    BankDatabase bankDatabase = BankDatabase.getInstance();
     
     public int  displayMainMenu(int accountNumber){
         Account account = bankDatabase.getAccount(accountNumber);       
@@ -51,5 +43,6 @@ public class AccountController{
         }else{
             return displayWithdrawalMenu(accountNumber,amount);
         }
-    } 
+    }
+ 
 }

@@ -11,9 +11,9 @@ package com.appl.atm.model;
  */
 public class BalanceInquiry extends Transaction {
     // BalanceInquiry constructor
-    public BalanceInquiry(int userAccountNumber, BankDatabase atmBankDatabase,BankStatement bankStatement) {
+    public BalanceInquiry(int userAccountNumber, BankDatabase atmBankDatabase) {
 
-	super(userAccountNumber, atmBankDatabase, bankStatement);
+	super(userAccountNumber, atmBankDatabase);
     } 
 
     @Override

@@ -8,7 +8,6 @@ package com.appl.atm.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -46,13 +45,13 @@ public class MainATMTest {
      * Test of main method, of class MainATM.
      */
     @Test
-    public void testMain() throws FileNotFoundException, IOException {
+    public void testMain() throws FileNotFoundException {
         System.out.println("main");
         String[] args = null;
         final InputStream original = System.in;
         final FileInputStream fips = new FileInputStream(new File("test/com/appl/atm/controller/input.in"));
         System.setIn(fips);
-        MainATM.main(args);
+//        MainATM.main(args);
         System.setIn(original);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

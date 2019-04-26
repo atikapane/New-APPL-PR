@@ -18,35 +18,32 @@ public class Withdrawal extends Transaction {
 
     // Withdrawal constructor
     public Withdrawal(int userAccountNumber, BankDatabase atmBankDatabase,
-            CashDispenser atmCashDispenser,BankStatement bankStatement) {
+            CashDispenser atmCashDispenser) {
 
-	super(userAccountNumber, atmBankDatabase, bankStatement);
+        // initialize superclass variables
+        super(userAccountNumber, atmBankDatabase);
         cashDispenser = atmCashDispenser;
     }
 
     @Override
     public int execute() {
         Account account = getBankDatabase().getAccount(getAccountNumber());
-        account.setWithdrawToday(amount);
 
         if (account.getAvailableBalance() < amount) {
-            account.setWithdrawToday(-amount);
             return BALANCE_NOT_ENOUGH;
         }
 
-        if (account.getWithdrawToday() > account.getMAXWITHDRAW()) {
-            account.setWithdrawToday(-amount);
+        if (account.getMaxWithdraw() < amount) {
             return REACH_LIMIT;
         }
 
-        if (cashDispenser.isSufficientCashAvailable(amount)) {
-            cashDispenser.dispenseCash(amount);
-            account.debit(amount);
-            return WITHDRAW_SUCCESSFUL;
-        } else {
-            account.setWithdrawToday(-amount);
-            return CASHDISPENSER_NOT_ENOUGH;
-        }
+	if (cashDispenser.isSufficientCashAvailable(amount)) {
+	    cashDispenser.dispenseCash(amount);
+	    account.credit(amount);
+	    return WITHDRAW_SUCCESSFUL;
+	} else {
+	    return CASHDISPENSER_NOT_ENOUGH;
+	}
     }
 
     /**

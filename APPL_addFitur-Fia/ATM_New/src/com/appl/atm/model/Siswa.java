@@ -9,27 +9,22 @@ package com.appl.atm.model;
  *
  * @author m4nz2
  */
-public class AccountBussiness extends Account {
+public class Siswa extends Account {
 
-    public final int MAXWITHDRAW = 1000;
-    public final int MAXTRANSFER = 10000;
-    public final int MONTHLY_ADM = 5;
+    private static final int MAXWITHDRAW = 20;
 
-    public AccountBussiness(int theAccountNumber, int thePIN,
+    public Siswa(int theAccountNumber, int thePIN,
             double theAvailableBalance, double theTotalBalance) {
         super(theAccountNumber, thePIN,
                 theAvailableBalance, theTotalBalance);
     }
 
-    public int getMaxWithdraw() {
+    /**
+     * @return the MAXWITHDRAW
+     */
+    public static int getMAXWITHDRAW() {
         return MAXWITHDRAW;
     }
-
-    public int getMaxTransfer() {
-        return MAXTRANSFER;
-    }
-
-    public int getMonthlyAdm() {
-        return MONTHLY_ADM;
-    }
+    
+    
 }

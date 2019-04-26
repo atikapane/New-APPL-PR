@@ -5,78 +5,154 @@
  */
 package com.appl.atm.model;
 
-import com.appl.atm.controller.TanggalController;
-import java.util.ArrayList;
-
 /**
  *
  * @author ACER
  */
 public class BankStatement {
-     private int theAccountNumber;
-    private ArrayList accountNumber;
-    private ArrayList amount;
-    private ArrayList transaction;
-    private ArrayList date;
-    private TanggalController tgl = new TanggalController();
-    private int dataSize;
+    private int idStatement;
+    private int account;
+    private String date;
+    private String description;
+    private int ref;
+    private double withdrawal;
+    private double deposit;
+    private String DepositValidate;
+    private double balance;
 
-    public BankStatement(int theLoginAccountNumber) {
-        theAccountNumber = theLoginAccountNumber;
-        
-        if(accountNumber == null)
-            accountNumber = new ArrayList<>();
-
-        if(amount == null)
-            amount = new ArrayList<>();
-
-        if(transaction == null)
-            transaction = new ArrayList<>();
-        
-        if(date == null)
-            date = new ArrayList<>();
-    }
     
-    public void addStatement(int theAccountNumber, int theAmount, String theTransaction)
-    {
-
-        getAccountNumber().add(theAccountNumber);
-        getAmount().add(theAmount);
-        getTransaction().add(theTransaction);
-        getDate().add(tgl.getDateNow());
-        dataSize += 1;
+    /**
+     * @return the idStatement
+     */
+    public int getIdStatement() {
+        return idStatement;
     }
 
     /**
-     * @return the accountNumber
+     * @param idStatement the idStatement to set
      */
-    public ArrayList getAccountNumber() {
-        return accountNumber;
+    public void setIdStatement(int idStatement) {
+        this.idStatement = idStatement;
+        System.out.println("setId");        
+        System.out.println("id = " + idStatement);
+
+        
+    }
+
+    
+    /**
+     * @return the account
+     */
+    public int getAccount() {
+        return account;
     }
 
     /**
-     * @return the amount
+     * @param account the account to set
      */
-    public ArrayList getAmount() {
-        return amount;
-    }
+    public void setAccount(int account) {
+        this.account = account;
+        System.out.println("setAccount");        
+        System.out.println("id = " + account);
 
-    /**
-     * @return the transaction
-     */
-    public ArrayList getTransaction() {
-        return transaction;
     }
 
     /**
      * @return the date
      */
-    public ArrayList getDate() {
+    public String getDate() {
         return date;
     }
-    
-    public int getDataSize(){
-        return dataSize;
+
+    /**
+     * @param date the date to set
+     */
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * @return the ref
+     */
+    public int getRef() {
+        return ref;
+    }
+
+    /**
+     * @param ref the ref to set
+     */
+    public void setRef(int ref) {
+        this.ref = ref;
+    }
+
+    /**
+     * @return the withdrawal
+     */
+    public double getWithdrawal() {
+        return withdrawal;
+    }
+
+    /**
+     * @param withdrawal the withdrawal to set
+     */
+    public void setWithdrawal(double withdrawal) {
+        this.withdrawal = withdrawal;
+    }
+
+    /**
+     * @return the deposit
+     */
+    public double getDeposit() {
+        return deposit;
+    }
+
+    /**
+     * @param deposit the deposit to set
+     */
+    public void setDeposit(double deposit) {
+        this.deposit = deposit;
+    }
+
+    /**
+     * @return the DepositValidate
+     */
+    public String getDepositValidate() {
+        return DepositValidate;
+    }
+
+    /**
+     * @param DepositValidate the DepositValidate to set
+     */
+    public void setDepositValidate(String DepositValidate) {
+        this.DepositValidate = DepositValidate;
+    }
+
+    /**
+     * @return the balance
+     */
+    public double getBalance() {
+        return balance;
+    }
+
+    /**
+     * @param balance the balance to set
+     */
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
     
     

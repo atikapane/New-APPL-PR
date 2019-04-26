@@ -25,7 +25,7 @@ public class WithdrawalTest {
     double debitAmount = 20;
     
     public WithdrawalTest() {
-        bankDatabase = new BankDatabase();
+        bankDatabase = BankDatabase.getInstance();
     }
     
 //    @BeforeClass

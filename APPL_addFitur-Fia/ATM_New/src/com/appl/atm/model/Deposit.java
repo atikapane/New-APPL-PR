@@ -18,9 +18,10 @@ public class Deposit extends Transaction {
 
     // Deposit constructor
     public Deposit(int userAccountNumber, BankDatabase atmBankDatabase,
-	    DepositSlot atmDepositSlot,BankStatement bankStatement) {
+	    DepositSlot atmDepositSlot) {
 
-	super(userAccountNumber, atmBankDatabase, bankStatement);
+	// initialize superclass variables
+	super(userAccountNumber, atmBankDatabase);
 	depositSlot = atmDepositSlot;
     }
 
@@ -28,7 +29,7 @@ public class Deposit extends Transaction {
     public int execute() {
 	if (depositSlot.isEnvelopeReceived()) {
 	    Account account = getBankDatabase().getAccount(getAccountNumber());
-	    account.credit(amount);
+	    account.debit(amount);
 	    return DEPOSIT_SUCCESSFUL;
 	} else {
 	    return ENVELOPE_IS_NOT_RECEIVED;

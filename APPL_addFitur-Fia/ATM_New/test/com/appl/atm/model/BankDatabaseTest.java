@@ -25,7 +25,7 @@ public class BankDatabaseTest {
     public BankDatabaseTest() {
         System.out.println("Test Started");
         
-        bankDatabase = new BankDatabase();
+        bankDatabase = BankDatabase.getInstance();
     }
     
 //    @BeforeClass

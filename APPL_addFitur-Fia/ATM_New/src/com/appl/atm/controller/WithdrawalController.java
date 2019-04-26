@@ -5,6 +5,8 @@
  */
 package com.appl.atm.controller;
 
+import com.appl.atm.model.Account;
+import com.appl.atm.model.BankDatabase;
 import static com.appl.atm.model.Constants.*;
 import com.appl.atm.model.Transaction;
 import com.appl.atm.model.Withdrawal;
@@ -19,7 +21,8 @@ import com.appl.atm.view.Screen;
 public class WithdrawalController extends TransactionController {
 
     private Withdrawal transaction;
-
+     BankStatementController bankStatement = new BankStatementController();
+    
     public WithdrawalController(Transaction theTransaction, Keypad theKeypad, Screen theScreen) {
         super(theKeypad, theScreen);
         transaction = (Withdrawal) theTransaction;
@@ -32,22 +35,16 @@ public class WithdrawalController extends TransactionController {
         if (amount != 0) {
             transaction.setAmount(amount);
             int res = transaction.execute();
-            switch (res) {
-                case WITHDRAW_SUCCESSFUL:
-                    getScreen().displayMessageLine("\nYour cash has been dispensed. Please take your cash now.");
-                    transaction.getBankStatement().addStatement(transaction.getAccountNumber(), amount, "Withdrawal");
-                    break;
-                case BALANCE_NOT_ENOUGH:
-                    getScreen().displayMessageLine("\nYour balance isn't enough for this withdrawal.");
-                    break;
-                case CASHDISPENSER_NOT_ENOUGH:
-                    getScreen().displayMessageLine("\nCash dispenser doesn't have sufficient amount of cash.");
-                    break;
-                case REACH_LIMIT:
-                    getScreen().displayMessageLine("\nYou have exceed your withdrawal limit.");
-                    break;
-                default:
-                    break;
+            if (res == WITHDRAW_SUCCESSFUL) {
+                getScreen().displayMessageLine("Your cash has been dispensed. Please take your cash now.");
+                BankStatementController bankStatementC = new BankStatementController();
+                bankStatementC.setBankStatement(transaction.getAccountNumber(), "Withdrawal", 0, amount, 0, null);
+            } else if (res == BALANCE_NOT_ENOUGH) {
+                getScreen().displayMessageLine("Your balance isn't enough for this withdrawal.");
+            } else if (res == CASHDISPENSER_NOT_ENOUGH) {
+                getScreen().displayMessageLine("Cash dispenser doesn't have sufficient amount of cash.");
+            } else if (res == REACH_LIMIT) {
+                getScreen().displayMessageLine("You have exceed your withdrawal limit.");
             }
         }
 

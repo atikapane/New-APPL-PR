@@ -12,14 +12,6 @@ import java.util.Scanner;
  */
 public class TanggalController {
     public static Calendar now = Calendar.getInstance();
-    public String getDateNow(){
-        int day = now.get(Calendar.DATE);
-        int month = now.get(Calendar.MONTH)+1;
-        int year = now.get(Calendar.YEAR);
-        
-        return (day < 9 ? "0" : "")+day +"-"+ (month < 9 ? "0" : "")+month+"-"+year;
-    }
-    
     public void tanggalSekarang(){
 //        this.now = Calendar.getInstance();
         System.out.println("Tanggal Sekarang: "
