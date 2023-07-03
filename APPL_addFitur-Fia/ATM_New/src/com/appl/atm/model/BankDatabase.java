@@ -5,7 +5,10 @@
  */
 package com.appl.atm.model;
 
+import com.appl.atm.view.Keypad;
+import com.appl.atm.view.Screen;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 /**
  *
@@ -36,7 +39,7 @@ public class BankDatabase {
         }
         return null; // if no matching account was found, return null
     }
-
+    
     public Account getSpecificAccount(int userAccountNumber, int userPIN) {
         Account userAccount = getAccount(userAccountNumber);
 
@@ -117,4 +120,32 @@ public class BankDatabase {
     public ArrayList<Integer> getAccountBlocked() {
         return accountBlocked;
     }
+    
+    public void changePIN(int userAccountNumber) {
+    Screen screen = new Screen();
+    Keypad keypad = new Keypad();
+    screen.displayMessage("Change PIN to: ");
+    int pinAfter = 0;
+    
+        try {
+            pinAfter = keypad.getInput();
+    
+            for (int i = 0; i < (int) accounts.size(); i++) {
+                if (accounts.get(i).getAccountNumber() == userAccountNumber) {
+                    if (accounts.get(i).getPIN() == pinAfter) {
+                        screen.displayMessageLine("New PIN must be different from current PIN."); 
+                    } else {
+                        accounts.get(i).setPIN(pinAfter); 
+                        screen.displayMessageLine("Your PIN has been changed.");
+                    }
+                }
+            }
+        }
+        
+        catch (InputMismatchException e) {
+            screen.displayMessageLine("Invalid PIN. PIN must be integer numbers.");
+        }
+    
+  }
+    
 }

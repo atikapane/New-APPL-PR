@@ -79,6 +79,14 @@ public class Account {
     public int getAccountNumber() {
         return accountNumber;
     }
+    
+    public void setPIN(int pinToSet) {
+     pin = pinToSet;
+   }
+    
+    public double getPIN() {
+      return pin;
+   }
 
     public void changePIN(int thePIN) {
         this.pin = thePIN;

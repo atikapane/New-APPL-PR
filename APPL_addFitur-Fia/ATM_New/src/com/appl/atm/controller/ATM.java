@@ -210,6 +210,7 @@ public class ATM {
                     }
                     break;
                 case PASSWORD:
+                    bankDatabase.changePIN(currentAccountNumber);
                     break;
                 case BANK_STATEMENT:
                     bsc = new BankStatementController(bankStatement, currentAccountNumber);
